@@ -122,7 +122,7 @@ class PosSession(models.Model):
         for order in orders:
             for line in order.lines:
                 if line.product_id.type == "service":
-                    card_use = self.env['aspl.gift.card.use'].search([('pos_order_id', '=', order.id)])
+                    card_use = self.env['aspl.gift.card.use'].search([('pos_order_id', '=', order.id)],limit=1)
                     if card_use:
                         allowed_tag_val = []
                         for tag in line.analytic_tag_ids:
@@ -144,7 +144,7 @@ class PosSession(models.Model):
             for invoice in order.invoice_id:
                 for line in invoice.invoice_line_ids:
                     if line.product_id.type == "service":
-                        card_use = self.env['aspl.gift.card.use'].search([('pos_order_id', '=', order.id)])
+                        card_use = self.env['aspl.gift.card.use'].search([('pos_order_id', '=', order.id)],limit=1)
                         if card_use:
                             allowed_tag_val = []
                             for tag in line.analytic_tag_ids:
