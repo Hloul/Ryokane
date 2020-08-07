@@ -103,8 +103,6 @@ odoo.define('ryokane_pos_buttons.buttons', function(require) {
                 },
                 is_selected: function(practitioner) {
 
-                    self.$el.find('span.practitioner').text("Practicienne");
-                    self.pos.get_order().practitioner = false;
                     return practitioner === self.pos.get_order().practitioner;
                 }
             });
@@ -155,7 +153,7 @@ odoo.define('ryokane_pos_buttons.buttons', function(require) {
                 title: _t('Select Salesperson'),
                 list: salespersons_list,
                 confirm: function(salesperson) {
-                  
+
                     var order = self.pos.get_order();
                     order.salesperson = salesperson;
                     models.salesperson = salesperson;
@@ -190,4 +188,3 @@ odoo.define('ryokane_pos_buttons.buttons', function(require) {
 
 
 });
-
