@@ -93,7 +93,7 @@ class SaleOrder(models.Model):
     def write(self, vals):
         for so in self:
             if vals.get('state') == 'sale' or vals.get('state') == 'done':
-                sale_order_line_id = self.env['sale.order.line'].search([('order_id', '=', so.id),
+                sale_order_line_id = self.env['sale.order.line'].sudo(1).search([('order_id', '=', so.id),
                                                                          ('product_id.is_gift_card', '=', True)])
                 if sale_order_line_id:
                     if not so.gift_card_id:
